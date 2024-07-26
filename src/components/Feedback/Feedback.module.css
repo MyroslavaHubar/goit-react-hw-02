@@ -1,0 +1,9 @@
+.feedback {
+  margin-top: 20px;
+}
+
+.feedbackList {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
