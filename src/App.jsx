@@ -13,6 +13,12 @@ function App() {
     bad: 0,
   };
 
+  const totalFeedback =
+    counterFeedback.good + counterFeedback.bad + counterFeedback.neutral;
+  const positiveFeedback = Math.round(
+    (counterFeedback.good / totalFeedback) * 100
+  );
+
   return (
     <>
       <Section>
@@ -29,6 +35,8 @@ function App() {
           good={counterFeedback.good}
           neutral={counterFeedback.neutral}
           bad={counterFeedback.bad}
+          total={totalFeedback}
+          positive={positiveFeedback}
         ></Feedback>
       </Section>
     </>
