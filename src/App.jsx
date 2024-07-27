@@ -7,14 +7,21 @@ import Feedback from "./components/Feedback/Feedback";
 import Notification from "./components/Notification/Notification";
 
 function App() {
-  const counterFeedback = {
+  const [counterFeedback, setCounterFeedback] = useState({
     good: 0,
     neutral: 0,
     bad: 0,
-  };
+  });
+
+  function updateFeedback(feedbackType) {
+    setCounterFeedback({
+      ...counterFeedback,
+      [feedbackType]: counterFeedback[feedbackType] + 1,
+    });
+  }
 
   const totalFeedback =
-    counterFeedback.good + counterFeedback.bad + counterFeedback.neutral;
+    counterFeedback.good + counterFeedback.neutral + counterFeedback.bad;
   const positiveFeedback = Math.round(
     (counterFeedback.good / totalFeedback) * 100
   );
@@ -29,15 +36,21 @@ function App() {
           Please leave your feedback about our service by selecting one of the
           options below.
         </Description>
-        <Options buttons={["Good", "Neutral", "Bad"]}></Options>
-
-        <Feedback
-          good={counterFeedback.good}
-          neutral={counterFeedback.neutral}
-          bad={counterFeedback.bad}
-          total={totalFeedback}
-          positive={positiveFeedback}
-        ></Feedback>
+        <Options
+          updateFeedback={updateFeedback}
+          totalFeedback={totalFeedback}
+        ></Options>
+        {totalFeedback === 0 ? (
+          <Notification message="No feedback yet"></Notification>
+        ) : (
+          <Feedback
+            good={counterFeedback.good}
+            neutral={counterFeedback.neutral}
+            bad={counterFeedback.bad}
+            totalFeedback={totalFeedback}
+            positiveFeedback={positiveFeedback}
+          ></Feedback>
+        )}
       </Section>
     </>
   );
