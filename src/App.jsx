@@ -14,10 +14,16 @@ function App() {
   });
 
   function updateFeedback(feedbackType) {
-    setCounterFeedback({
-      ...counterFeedback,
-      [feedbackType]: counterFeedback[feedbackType] + 1,
-    });
+    feedbackType !== "reset"
+      ? setCounterFeedback({
+          ...counterFeedback,
+          [feedbackType]: counterFeedback[feedbackType] + 1,
+        })
+      : setCounterFeedback({
+          good: 0,
+          neutral: 0,
+          bad: 0,
+        });
   }
 
   const totalFeedback =
