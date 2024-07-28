@@ -6,6 +6,7 @@ function Options({ updateFeedback, totalFeedback }) {
       <button
         className={css.optionsButton}
         type="button"
+        aria-label="Button good"
         onClick={() => updateFeedback("good")}
       >
         Good
@@ -13,6 +14,7 @@ function Options({ updateFeedback, totalFeedback }) {
       <button
         className={css.optionsButton}
         type="button"
+        aria-label="Button neutral"
         onClick={() => updateFeedback("neutral")}
       >
         Neutral
@@ -20,6 +22,7 @@ function Options({ updateFeedback, totalFeedback }) {
       <button
         className={css.optionsButton}
         type="button"
+        aria-label="Button bad"
         onClick={() => updateFeedback("bad")}
       >
         Bad
@@ -28,6 +31,7 @@ function Options({ updateFeedback, totalFeedback }) {
         <button
           className={css.optionsButton}
           type="button"
+          aria-label="Button reset"
           onClick={() => updateFeedback("reset")}
         >
           Reset
