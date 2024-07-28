@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Section from "./components/Section/Section";
 import Description from "./components/Description/Description";
@@ -7,10 +7,21 @@ import Feedback from "./components/Feedback/Feedback";
 import Notification from "./components/Notification/Notification";
 
 function App() {
-  const [counterFeedback, setCounterFeedback] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
+  const [counterFeedback, setCounterFeedback] = useState(() => {
+    const localFeedback = window.localStorage.getItem("localFeedback");
+    return (
+      JSON.parse(localFeedback) ?? {
+        good: 0,
+        neutral: 0,
+        bad: 0,
+      }
+    );
+  });
+
+  useEffect(() => {
+    localStorage.setItem("localFeedback", JSON.stringify(counterFeedback), [
+      counterFeedback,
+    ]);
   });
 
   function updateFeedback(feedbackType) {
