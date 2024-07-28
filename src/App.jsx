@@ -19,10 +19,8 @@ function App() {
   });
 
   useEffect(() => {
-    localStorage.setItem("localFeedback", JSON.stringify(counterFeedback), [
-      counterFeedback,
-    ]);
-  });
+    localStorage.setItem("localFeedback", JSON.stringify(counterFeedback));
+  }, [counterFeedback]);
 
   function updateFeedback(feedbackType) {
     feedbackType !== "reset"
